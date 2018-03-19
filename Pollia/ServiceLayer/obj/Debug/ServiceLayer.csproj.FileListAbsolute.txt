@@ -12,3 +12,17 @@ F:\Pollia\Project\ST\Pollia\ServiceLayer\obj\Debug\ServiceLayer.csproj.CoreCompi
 F:\Pollia\Project\ST\Pollia\ServiceLayer\obj\Debug\ServiceLayer.dll
 F:\Pollia\Project\ST\Pollia\ServiceLayer\obj\Debug\ServiceLayer.pdb
 F:\Pollia\Project\ST\Pollia\ServiceLayer\bin\Debug\Neo4j.Driver.dll
+F:\Pollia\Project\ST\BackEnd\Pollia\ServiceLayer\bin\Debug\ServiceLayer.dll
+F:\Pollia\Project\ST\BackEnd\Pollia\ServiceLayer\bin\Debug\ServiceLayer.pdb
+F:\Pollia\Project\ST\BackEnd\Pollia\ServiceLayer\bin\Debug\DataLayer.dll
+F:\Pollia\Project\ST\BackEnd\Pollia\ServiceLayer\bin\Debug\ModelLayer.dll
+F:\Pollia\Project\ST\BackEnd\Pollia\ServiceLayer\bin\Debug\Neo4j.Driver.dll
+F:\Pollia\Project\ST\BackEnd\Pollia\ServiceLayer\bin\Debug\EntityFramework.dll
+F:\Pollia\Project\ST\BackEnd\Pollia\ServiceLayer\bin\Debug\DataLayer.pdb
+F:\Pollia\Project\ST\BackEnd\Pollia\ServiceLayer\bin\Debug\ModelLayer.pdb
+F:\Pollia\Project\ST\BackEnd\Pollia\ServiceLayer\bin\Debug\ModelLayer.dll.config
+F:\Pollia\Project\ST\BackEnd\Pollia\ServiceLayer\bin\Debug\EntityFramework.xml
+F:\Pollia\Project\ST\BackEnd\Pollia\ServiceLayer\obj\Debug\ServiceLayer.csprojResolveAssemblyReference.cache
+F:\Pollia\Project\ST\BackEnd\Pollia\ServiceLayer\obj\Debug\ServiceLayer.csproj.CoreCompileInputs.cache
+F:\Pollia\Project\ST\BackEnd\Pollia\ServiceLayer\obj\Debug\ServiceLayer.dll
+F:\Pollia\Project\ST\BackEnd\Pollia\ServiceLayer\obj\Debug\ServiceLayer.pdb
