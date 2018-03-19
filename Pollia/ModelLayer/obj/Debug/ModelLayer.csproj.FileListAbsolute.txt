@@ -1,0 +1,11 @@
+F:\Pollia\Project\ST\Pollia\ModelLayer\bin\Debug\ModelLayer.dll.config
+F:\Pollia\Project\ST\Pollia\ModelLayer\bin\Debug\ModelLayer.dll
+F:\Pollia\Project\ST\Pollia\ModelLayer\bin\Debug\ModelLayer.pdb
+F:\Pollia\Project\ST\Pollia\ModelLayer\bin\Debug\EntityFramework.dll
+F:\Pollia\Project\ST\Pollia\ModelLayer\bin\Debug\EntityFramework.SqlServer.dll
+F:\Pollia\Project\ST\Pollia\ModelLayer\bin\Debug\EntityFramework.xml
+F:\Pollia\Project\ST\Pollia\ModelLayer\bin\Debug\EntityFramework.SqlServer.xml
+F:\Pollia\Project\ST\Pollia\ModelLayer\obj\Debug\ModelLayer.csproj.CoreCompileInputs.cache
+F:\Pollia\Project\ST\Pollia\ModelLayer\obj\Debug\ModelLayer.dll
+F:\Pollia\Project\ST\Pollia\ModelLayer\obj\Debug\ModelLayer.pdb
+F:\Pollia\Project\ST\Pollia\ModelLayer\obj\Debug\ModelLayer.csprojResolveAssemblyReference.cache

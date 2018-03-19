@@ -1,0 +1,736 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    min-width: 320px;
+    overflow: auto;
+}
+
+#map {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.fullfillpercent {
+    width: 100%;
+    height: 100%;
+}
+
+.maincontainer{
+    margin-top: 10px;
+    background-color: #ffffff;
+}
+
+.searchTotalContainer{
+    width: 100%;
+    height: 62px;
+    max-width: 425px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 1em;
+    z-index: 10;
+    padding: 6px;
+}
+.searchDualContainer{
+    width: 100%;
+    position: relative;
+    font-size: 1em;
+    z-index: 10;
+}
+.searchDualContainerControl{
+    width: 100% ;
+    min-height: 24px;
+}
+
+.searchContainer{
+    width: 100%;
+    height: 50px;
+    position: relative;
+    font-size: 1em;
+    z-index: 10;
+    overflow-y: visible;
+}
+
+.searchContainer input[type=text] {
+    border: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1em;
+    padding-left: 90px;
+    padding-right: 100px;
+}
+.searchDualContainer .searchContainer input[type=text]{
+    padding-left: 5px;
+}
+
+.searchContainer input[type=text]:focus {
+    outline: none;
+}
+
+.searchContainer button {
+     border: none;
+     height: 100%;
+     min-width: 50px;
+     background-color: #ffffff;
+     position: relative;
+     font-size: 1.5em;
+ }
+.searchDualContainerControl button {
+    border: none;
+    background-color: transparent;
+    color: #ffffff;
+    position: relative;
+    font-size: 1em;
+}
+
+#searchTypeButton {
+    width: 85px;
+    text-align: left;
+    /*background-color: #0088cc;*/
+}
+.typeList {
+    position: absolute;
+    overflow: hidden;
+    width: 85px;
+    height: 0px;
+    color: #ffffff;
+    left: 0;
+    top: 100%;
+    overflow: hidden;
+    transition: height 0.5s;
+}
+.typeList ul {
+    width: 100%;
+    background-color: #333333;
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 0px;
+    box-sizing: border-box;
+    margin: 0px;
+    transform: translate(0,-100%);
+    transition: transform 0.5s;
+}
+
+.typeList li{
+    padding: 6px;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.typeList li:hover{
+    background-color: #666666;
+}
+
+
+.sort-down {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+
+.searchHeader{
+    position: relative;
+}
+.searchHeaderForm{
+    width: 100%;
+    height: 50px;
+    max-width: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.searchHeaderContainer{
+    width: 100%;
+    height: 50px;
+    font-size: 1em;
+    z-index: 10;
+}
+
+.searchHeaderContainer input[type=text] {
+    border: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1em;
+    padding-left: 55px;
+    padding-right: 100px;
+}
+
+.searchHeaderContainer input[type=text]:focus {
+    outline: none;
+}
+
+.searchHeaderContainer button {
+    border: none;
+    height: 100%;
+    width: 50px;
+    background-color: #ffffff;
+    position: relative;
+    font-size: 1.5em;
+}
+
+.resultContainer{
+    width: 100%;
+    height: 100vh;
+    max-width: 425px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    font-size: 1em;
+    z-index: 9;
+    background-color: #ffffff;
+    overflow-y: auto;
+    display: none;
+}
+
+.resultContainerMain{
+    width: 100%;
+    font-size: 1em;
+    padding: 10px 10px;
+    background-color: #ffffff;
+    overflow-y: auto;
+}
+
+.resultHeader{
+    position:relative;
+    background-color: #2aabd2;
+    min-height: 62px;
+    box-sizing: border-box;
+    padding: 16px 16px 16px 16px;
+    z-index:9;
+}
+
+.addToTripbookContain {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translate(0%,-50%);
+}
+
+.resultContain{
+    height: 100%;
+    width: 100%;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    padding-top: 62px;
+    overflow-y:auto;
+}
+
+.mainResult>h1{
+    text-align: center;
+}
+
+.resultElement{
+    cursor: pointer;
+    width: 100%;
+    min-height: 112px;
+    padding: 6px 16px 6px 16px;
+    position: relative;
+    border-bottom: 1px solid #cccccc;
+}
+.mainResultElement {
+
+}
+.resultContainerMain .resultElement{
+    width: auto;
+}
+.resultElement:hover{
+    background-color: #eeeeee;
+}
+
+.resultElement .info{
+    margin-right: 100px;
+}
+.resultElement .info>p{
+    margin: 0px 0px 6px 0px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #888888;
+}
+.resultElement .info .header{
+    font-size: 1.25em;
+    color: #000000;
+}
+.resultElement .info .star{
+    color: #ff8800;
+}
+.stargrey{
+    color: #cccccc;
+}
+.starblue{
+    color: #3333ff;
+}
+
+.resultHeader .info>p{
+    margin: 0px 0px 6px 0px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #ffffff;
+}
+.resultHeader .info .header{
+    font-size: 1.25em;
+    color: #ffffff;
+}
+.resultHeader .info .star{
+    color: #ffffff;
+}
+
+.resultThumbnail{
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    top: 6px;
+    right: 16px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.resultCover {
+    background-color: #0090bb;
+    height: 200px;
+}
+.resultCover>div{
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.resultDetail{
+    padding: 16px 16px 6px 16px;
+    color: #888888;
+    font-size: 1em;
+}
+.resultDetail>p>span{
+    font-size: 1.5em;
+    color: #2aabd2;
+}
+
+.clearfloat::after{
+    content: ' ';
+    clear: both;
+}
+
+/*search dual*/
+#searchDual{
+    z-index: 11;
+}
+
+/*searchDetail*/
+.searchDetailContain{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    min-height: 100px;
+    background-color: rgba(0,0,0,0.7);
+    color: #ffffff;
+    padding: 16px;
+}
+.searchDetailContain>div{
+    margin-bottom: 16px;
+}
+.searchDetailContain input[type=text],.searchDetailContain select {
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    width: 100%;
+    min-height: 2.5em;
+    padding: 6px;
+    font-size: 1em;
+    background-color: transparent;
+}
+.searchDetailContain option{
+    color: #ffffff;
+    background-color: #333333;
+}
+
+.searchDetailContain input[type=text]:focus,.searchDetailContain select:focus {
+    outline: none;
+}
+
+
+/*comment*/
+.commentContain{
+    /*background-color: #cceeff;*/
+}
+.commentInfo {
+    /*background-color: #cceeff;*/
+    padding: 10px;
+}
+.commentInfo span, .commentInfo .datepost{
+    color: #555555;
+}
+.commentContent{
+    padding-left: 62px;
+    color: #333333;
+    font-size: 1em;
+}
+.commentContain .avatar{
+    width: 36px;
+    height: 36px;
+}
+.commentContain .info{
+    position: relative;
+    min-height: 36px;
+    padding: 0px;
+}
+.commentContain .poster {
+    font-size: 1em;
+    margin-right: 10px;
+}
+.commentIndex {
+    text-align: right;
+}
+textarea {
+    width: 100%;
+}
+
+/*total*/
+.avatar{
+    width: 64px;
+    height: 64px;
+    float: left;
+    margin-right: 16px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.avatar img {
+    width: 100%;
+    position: relative;
+    top: 50%;
+    transform: translate(0%,-50%);
+
+}
+*::-webkit-scrollbar{
+    width: 6px;
+    height: 6px;
+}
+
+*::-webkit-scrollbar-track{
+    background-color: rgba(200,200,200,0.8);
+}
+
+*::-webkit-scrollbar-thumb{
+    background-color: #888888;
+}
+/*hearder*/
+header {
+    min-width: 320px;
+    width: 100%;
+    height: 60px;
+    padding: 10px 0px;
+    background-color: rgba(255,255,255,0.4);
+    /*box-shadow: 0px 0px 10px #80808f;*/
+    border-bottom: 1px solid #cccccc;
+    position: fixed;
+    top: 0px;
+    z-index: 10;
+}
+header>div{
+    height: 40px;
+}
+.logocontain {
+    text-align: center;
+}
+header img{
+    height: 100%;
+}
+.menuButton {
+    cursor: pointer;
+    height: 100%;
+    font-size: 2em;
+    overflow: hidden;
+}
+
+/*user*/
+.userInfoContain{
+    font-size: 1.5em;
+    line-height: 40px;
+    cursor: pointer;
+}
+.userAvatar{
+    width: 40px;
+    height: 40px;
+    float: right;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.userAvatar img {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 50%;
+    transform: translate(0%,-50%);
+
+}
+.userMenu{
+    position: fixed;
+    width: 100%;
+    right: 0px;
+    top: 60px;
+    z-index: 11;
+    display: none;
+}
+.userMenu ul::before{
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    position: absolute;
+    top: -10px;
+    right: 25px;
+    transform: rotate(45deg);
+    z-index: 8;
+}
+.userMenu ul{
+    background-color: #ffffff;
+
+    /*position: fixed;*/
+    /*right: 0px;*/
+    /*border: 1px solid #cccccc;*/
+}
+.userMenu ul li{
+    margin-top: 5px;
+}
+
+/*Slide show*/
+.slideShow{
+    width: 100%;
+    height: 80vh;
+    overflow-x: hidden;
+    position: relative;
+}
+.slideContain{
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.slide {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0;
+}
+/*button*/
+.button{
+    cursor: pointer;
+    height: 40px;
+    padding: 0px 10px;
+    font-family: sans-serif;
+    font-weight: 600;
+    text-align: center;
+    color: #333333;
+    background-color: #ffffff;
+    border: 2px solid #666666;
+    line-height: 40px;
+    overflow: hidden;
+}
+.button:hover{
+
+}
+
+.buttonPrimary {
+    color: #ffffff;
+    background-color: #4488ff;
+    border: 0px;
+}
+.buttonPrimary:hover{
+    background-color: #4488cc;
+}
+
+.buttonCircle{
+    width: 48px;
+    height: 48px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.buttonSuccess{
+    color: #ffffff;
+    background-color: #55dd55;
+    border: 0px;
+}
+.buttonDanger{
+    color: #ffffff;
+    background-color: #dd5555;
+    border: 0px;
+}
+.buttonWarning{
+    color: #ffffff;
+    background-color: #dd9922;
+    border: 0px;
+}
+.buttonCircle:hover::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #333333;
+    opacity: 0.3;
+    text-align: center;
+}
+.buttonCircle i {
+    font-size: 36px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.floatRight{
+    float: right;
+}
+
+/*place*/
+.placeContain{
+
+}
+.place{
+    position: relative;
+    padding: 6px;
+}
+.placeDetail::before{
+    height: 100%;
+    width: 100%;
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(51,51,51,0.5);
+}
+.placeDetail{
+    padding: 0px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    text-align: center;
+}
+
+/*tripbook*/
+
+.showTripBook{
+    position: fixed;
+    bottom: 6px;
+    left: 6px;
+}
+
+/*popup*/
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    font-size: 1em;
+    z-index: 10;
+    display: none;
+}
+.popupcontain {
+    position: absolute;
+    max-width: 360px;
+    width: 100%;
+    min-height: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 1em;
+    z-index: 10;
+    background-color: #ffffff;
+    /*display: block;*/
+}
+.popupcontain>i{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 1em;
+    cursor: pointer;
+}
+.closebackground {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(51,51,51,0.5);
+}
+
+/*form*/
+.formContain {
+    margin: 0 auto;
+    max-width: 640px;
+    padding: 50px;
+    margin-top: 50px;
+    background-color: #ffffff;
+}
+.formBox{
+    border-radius: 3px;
+    box-shadow: 0px 5px 10px -5px rgba(100,100,100,0.5);
+}
+.formContain>div {
+    margin-top: 25px;
+    position: relative;
+}
+
+.fixHeightTable{
+    max-height: 500px;
+    overflow: scroll;
+}
+.inputText input{
+    width: 100%;
+    font-size: 1.5em;
+    padding: 0px 10px;
+    border: 0px solid #ffffff;
+    border-left: 2px solid #226699;
+    transition: border 0.5s, background 0.5s;
+}
+.inputText input:focus{
+    outline: 0px;
+    border-left: 2px solid #2266ff;
+    background-color: #eeeeee;
+}
+.inputText select{
+    width: 100%;
+    font-size: 1.5em;
+    padding: 0px 10px;
+    border: 0px solid #ffffff;
+    border-left: 2px solid #226699;
+    transition: border 0.5s, background 0.5s;
+}
+.inputText select:focus{
+    outline: 0px;
+    border-left: 2px solid #2266ff;
+    background-color: #eeeeee;
+}
+label {
+    display: block;
+    color: #666666;
+}

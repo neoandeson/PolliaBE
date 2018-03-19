@@ -1,0 +1,754 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PolliaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IsEnable" Type="Boolean" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PlaceId" Type="Int32" />
+    <Property Name="EventId" Type="Int32" />
+    <NavigationProperty Name="Event" Relationship="Self.FK_ARTICLE_EVENT" FromRole="Articles" ToRole="Events" />
+    <NavigationProperty Name="Place" Relationship="Self.FK_ARTICLE_PLACE" FromRole="Articles" ToRole="Places" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_ARTICLE_USER" FromRole="Articles" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_COMMENT_EVENT" FromRole="Articles" ToRole="Comments" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProvinceId" Type="Int32" Nullable="false" />
+    <Property Name="DistrictId" Type="Int32" Nullable="false" />
+    <Property Name="WardId" Type="Int32" Nullable="false" />
+    <Property Name="Sex" Type="Int32" Nullable="false" />
+    <Property Name="DoB" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsOnline" Type="Boolean" Nullable="false" />
+    <Property Name="AvatarUrl" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="Points" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Articles" Relationship="Self.FK_ARTICLE_USER" FromRole="AspNetUsers" ToRole="Articles" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_COMMENT_USER" FromRole="AspNetUsers" ToRole="Comments" />
+    <NavigationProperty Name="Events" Relationship="Self.FK_EVENT_LASTUPDATEUSER" FromRole="AspNetUsers" ToRole="Events" />
+    <NavigationProperty Name="Events1" Relationship="Self.FK_EVENT_USER" FromRole="AspNetUsers" ToRole="Events" />
+    <NavigationProperty Name="Places" Relationship="Self.FK_PLACE_LASTUPDATEUSER" FromRole="AspNetUsers" ToRole="Places" />
+    <NavigationProperty Name="Places1" Relationship="Self.FK_PLACE_USER" FromRole="AspNetUsers" ToRole="Places" />
+    <NavigationProperty Name="TripBooks" Relationship="Self.FK_TRIPBOOK_USER" FromRole="AspNetUsers" ToRole="TripBooks" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PlaceId" Type="Int32" />
+    <Property Name="EventId" Type="Int32" />
+    <Property Name="IsEnable" Type="Boolean" Nullable="false" />
+    <Property Name="ArticleId" Type="Int32" />
+    <NavigationProperty Name="Article" Relationship="Self.FK_COMMENT_EVENT" FromRole="Comments" ToRole="Articles" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_COMMENT_USER" FromRole="Comments" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Event" Relationship="Self.FK_COMMENT_ARTICLE" FromRole="Comments" ToRole="Events" />
+    <NavigationProperty Name="Place" Relationship="Self.FK_COMMENT_PLACE" FromRole="Comments" ToRole="Places" />
+  </EntityType>
+  <EntityType Name="EventKind">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Kind" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Events" Relationship="Self.FK_EVENT_EVENTKIND" FromRole="EventKinds" ToRole="Events" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Page" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImgUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EventKindId" Type="Int32" Nullable="false" />
+    <Property Name="PlaceId" Type="Int32" Nullable="false" />
+    <Property Name="ScopeId" Type="Int32" />
+    <Property Name="ServeStatus" Type="Int32" Nullable="false" />
+    <Property Name="RatingStar" Type="Int32" Nullable="false" />
+    <Property Name="NofSearch" Type="Int32" Nullable="false" />
+    <Property Name="Poppular" Type="Int32" Nullable="false" />
+    <Property Name="PLike" Type="Int32" Nullable="false" />
+    <Property Name="Facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Instagram" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TimeOpen" Type="Int32" />
+    <Property Name="TimeClose" Type="Int32" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateEnd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastConfirm" Type="DateTime" Precision="3" />
+    <Property Name="LastUpdateUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Articles" Relationship="Self.FK_ARTICLE_EVENT" FromRole="Events" ToRole="Articles" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_EVENT_LASTUPDATEUSER" FromRole="Events" ToRole="AspNetUsers" />
+    <NavigationProperty Name="AspNetUser1" Relationship="Self.FK_EVENT_USER" FromRole="Events" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_COMMENT_ARTICLE" FromRole="Events" ToRole="Comments" />
+    <NavigationProperty Name="EventKind" Relationship="Self.FK_EVENT_EVENTKIND" FromRole="Events" ToRole="EventKinds" />
+    <NavigationProperty Name="Place" Relationship="Self.FK_EVENT_PLACE" FromRole="Events" ToRole="Places" />
+    <NavigationProperty Name="Scope" Relationship="Self.FK_EVENT_SCOPE" FromRole="Events" ToRole="Scopes" />
+    <NavigationProperty Name="TripBookHasDestinations" Relationship="Self.FK_TRIPBOOKHD_EVENT" FromRole="Events" ToRole="TripBookHasDestinations" />
+  </EntityType>
+  <EntityType Name="ImageKind">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Kind" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Images" Relationship="Self.FK_IMAGE_IMAGEKIND" FromRole="ImageKinds" ToRole="Images" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImageKindId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="OwnId" Type="Int32" />
+    <NavigationProperty Name="ImageKind" Relationship="Self.FK_IMAGE_IMAGEKIND" FromRole="Images" ToRole="ImageKinds" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="PlaceId" Type="Int32" />
+    <Property Name="EventId" Type="Int32" />
+    <Property Name="ArticleId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="PlaceKind">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Kind" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Places" Relationship="Self.FK_PLACE_PLACEKIND" FromRole="PlaceKinds" ToRole="Places" />
+  </EntityType>
+  <EntityType Name="Place">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Longitude" Type="Double" Nullable="false" />
+    <Property Name="Latitude" Type="Double" Nullable="false" />
+    <Property Name="ZoomSize" Type="Double" />
+    <Property Name="ScopeId" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ServeStatus" Type="Int32" Nullable="false" />
+    <Property Name="PlaceKindId" Type="Int32" Nullable="false" />
+    <Property Name="TimeOpen" Type="Int32" />
+    <Property Name="TimeClose" Type="Int32" />
+    <Property Name="RatingStar" Type="Int32" Nullable="false" />
+    <Property Name="NofSearch" Type="Int32" Nullable="false" />
+    <Property Name="Popular" Type="Int32" Nullable="false" />
+    <Property Name="PLike" Type="Int32" Nullable="false" />
+    <Property Name="Facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Instagram" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImgUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="LastConfirm" Type="DateTime" Precision="3" />
+    <Property Name="LastUpdateUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PrevPlaceId" Type="Int32" />
+    <Property Name="NextPlaceId" Type="Int32" />
+    <NavigationProperty Name="Articles" Relationship="Self.FK_ARTICLE_PLACE" FromRole="Places" ToRole="Articles" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_PLACE_LASTUPDATEUSER" FromRole="Places" ToRole="AspNetUsers" />
+    <NavigationProperty Name="AspNetUser1" Relationship="Self.FK_PLACE_USER" FromRole="Places" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_COMMENT_PLACE" FromRole="Places" ToRole="Comments" />
+    <NavigationProperty Name="Events" Relationship="Self.FK_EVENT_PLACE" FromRole="Places" ToRole="Events" />
+    <NavigationProperty Name="PlaceKind" Relationship="Self.FK_PLACE_PLACEKIND" FromRole="Places" ToRole="PlaceKinds" />
+    <NavigationProperty Name="Places1" Relationship="Self.FK_PLACE_NEXTPLACE" FromRole="Places" ToRole="Places1" />
+    <NavigationProperty Name="Place1" Relationship="Self.FK_PLACE_NEXTPLACE" FromRole="Places1" ToRole="Places" />
+    <NavigationProperty Name="Places11" Relationship="Self.FK_PLACE_PREVPLACE" FromRole="Places" ToRole="Places1" />
+    <NavigationProperty Name="Place2" Relationship="Self.FK_PLACE_PREVPLACE" FromRole="Places1" ToRole="Places" />
+    <NavigationProperty Name="Scope" Relationship="Self.FK_PLACE_SCOPE" FromRole="Places" ToRole="Scopes" />
+    <NavigationProperty Name="TripBookHasDestinations" Relationship="Self.FK_TRIPBOOKHD_PLACE" FromRole="Places" ToRole="TripBookHasDestinations" />
+  </EntityType>
+  <EntityType Name="RoleViewModel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Scope">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartLongitude" Type="Double" Nullable="false" />
+    <Property Name="EndLongitude" Type="Double" Nullable="false" />
+    <Property Name="StartLatitude" Type="Double" Nullable="false" />
+    <Property Name="EndLatitude" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Events" Relationship="Self.FK_EVENT_SCOPE" FromRole="Scopes" ToRole="Events" />
+    <NavigationProperty Name="Places" Relationship="Self.FK_PLACE_SCOPE" FromRole="Scopes" ToRole="Places" />
+  </EntityType>
+  <EntityType Name="TripBookHasDestination">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TripBookId" Type="Int32" Nullable="false" />
+    <Property Name="PlaceId" Type="Int32" Nullable="false" />
+    <Property Name="EventId" Type="Int32" Nullable="false" />
+    <Property Name="IsTraveled" Type="Boolean" />
+    <Property Name="Vendor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Event" Relationship="Self.FK_TRIPBOOKHD_EVENT" FromRole="TripBookHasDestinations" ToRole="Events" />
+    <NavigationProperty Name="Place" Relationship="Self.FK_TRIPBOOKHD_PLACE" FromRole="TripBookHasDestinations" ToRole="Places" />
+    <NavigationProperty Name="TripBook" Relationship="Self.FK_TRIPBOOKHD_TRIPBOOK" FromRole="TripBookHasDestinations" ToRole="TripBooks" />
+  </EntityType>
+  <EntityType Name="TripBook">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TB" Type="Int32" Nullable="false" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsTraveled" Type="Boolean" Nullable="false" />
+    <Property Name="IsPublic" Type="Boolean" Nullable="false" />
+    <Property Name="IsRemoved" Type="Boolean" Nullable="false" />
+    <Property Name="FeedBack" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PLike" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_TRIPBOOK_USER" FromRole="TripBooks" ToRole="AspNetUsers" />
+    <NavigationProperty Name="TripBookHasDestinations" Relationship="Self.FK_TRIPBOOKHD_TRIPBOOK" FromRole="TripBooks" ToRole="TripBookHasDestinations" />
+    <NavigationProperty Name="TripBooks1" Relationship="Self.FK_TRIPBOOK_TBORIGIN" FromRole="TripBooks" ToRole="TripBooks1" />
+    <NavigationProperty Name="TripBook1" Relationship="Self.FK_TRIPBOOK_TBORIGIN" FromRole="TripBooks1" ToRole="TripBooks" />
+  </EntityType>
+  <Association Name="FK_ARTICLE_EVENT">
+    <End Role="Events" Type="Self.Event" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Articles" Type="Self.Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Articles">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ARTICLE_PLACE">
+    <End Role="Places" Type="Self.Place" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Articles" Type="Self.Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Articles">
+        <PropertyRef Name="PlaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ARTICLE_USER">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Articles" Type="Self.Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Articles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMMENT_EVENT">
+    <End Role="Articles" Type="Self.Article" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Articles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="ArticleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMMENT_USER">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EVENT_LASTUPDATEUSER">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="Events" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Events">
+        <PropertyRef Name="LastUpdateUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EVENT_USER">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="Events" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Events">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PLACE_LASTUPDATEUSER">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="Places" Type="Self.Place" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Places">
+        <PropertyRef Name="LastUpdateUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PLACE_USER">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="Places" Type="Self.Place" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Places">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRIPBOOK_USER">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="TripBooks" Type="Self.TripBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TripBooks">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMMENT_ARTICLE">
+    <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_COMMENT_PLACE">
+    <End Role="Places" Type="Self.Place" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="PlaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EVENT_EVENTKIND">
+    <End Role="EventKinds" Type="Self.EventKind" Multiplicity="1" />
+    <End Role="Events" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventKinds">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Events">
+        <PropertyRef Name="EventKindId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EVENT_PLACE">
+    <End Role="Places" Type="Self.Place" Multiplicity="1" />
+    <End Role="Events" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Events">
+        <PropertyRef Name="PlaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EVENT_SCOPE">
+    <End Role="Scopes" Type="Self.Scope" Multiplicity="0..1" />
+    <End Role="Events" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Scopes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Events">
+        <PropertyRef Name="ScopeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRIPBOOKHD_EVENT">
+    <End Role="Events" Type="Self.Event" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TripBookHasDestinations" Type="Self.TripBookHasDestination" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TripBookHasDestinations">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IMAGE_IMAGEKIND">
+    <End Role="ImageKinds" Type="Self.ImageKind" Multiplicity="1" />
+    <End Role="Images" Type="Self.Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ImageKinds">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Images">
+        <PropertyRef Name="ImageKindId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PLACE_PLACEKIND">
+    <End Role="PlaceKinds" Type="Self.PlaceKind" Multiplicity="1" />
+    <End Role="Places" Type="Self.Place" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlaceKinds">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Places">
+        <PropertyRef Name="PlaceKindId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PLACE_NEXTPLACE">
+    <End Role="Places" Type="Self.Place" Multiplicity="0..1" />
+    <End Role="Places1" Type="Self.Place" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Places1">
+        <PropertyRef Name="NextPlaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PLACE_PREVPLACE">
+    <End Role="Places" Type="Self.Place" Multiplicity="0..1" />
+    <End Role="Places1" Type="Self.Place" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Places1">
+        <PropertyRef Name="PrevPlaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PLACE_SCOPE">
+    <End Role="Scopes" Type="Self.Scope" Multiplicity="0..1" />
+    <End Role="Places" Type="Self.Place" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Scopes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Places">
+        <PropertyRef Name="ScopeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRIPBOOKHD_PLACE">
+    <End Role="Places" Type="Self.Place" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TripBookHasDestinations" Type="Self.TripBookHasDestination" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Places">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TripBookHasDestinations">
+        <PropertyRef Name="PlaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRIPBOOKHD_TRIPBOOK">
+    <End Role="TripBooks" Type="Self.TripBook" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TripBookHasDestinations" Type="Self.TripBookHasDestination" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TripBooks">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TripBookHasDestinations">
+        <PropertyRef Name="TripBookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRIPBOOK_TBORIGIN">
+    <End Role="TripBooks" Type="Self.TripBook" Multiplicity="1" />
+    <End Role="TripBooks1" Type="Self.TripBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TripBooks">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TripBooks1">
+        <PropertyRef Name="TB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="PolliaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Articles" EntityType="Self.Article" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="EventKinds" EntityType="Self.EventKind" />
+    <EntitySet Name="Events" EntityType="Self.Event" />
+    <EntitySet Name="ImageKinds" EntityType="Self.ImageKind" />
+    <EntitySet Name="Images" EntityType="Self.Image" />
+    <EntitySet Name="Logs" EntityType="Self.Log" />
+    <EntitySet Name="PlaceKinds" EntityType="Self.PlaceKind" />
+    <EntitySet Name="Places" EntityType="Self.Place" />
+    <EntitySet Name="RoleViewModels" EntityType="Self.RoleViewModel" />
+    <EntitySet Name="Scopes" EntityType="Self.Scope" />
+    <EntitySet Name="TripBookHasDestinations" EntityType="Self.TripBookHasDestination" />
+    <EntitySet Name="TripBooks" EntityType="Self.TripBook" />
+    <AssociationSet Name="FK_ARTICLE_EVENT" Association="Self.FK_ARTICLE_EVENT">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="Articles" EntitySet="Articles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ARTICLE_PLACE" Association="Self.FK_ARTICLE_PLACE">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="Articles" EntitySet="Articles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ARTICLE_USER" Association="Self.FK_ARTICLE_USER">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Articles" EntitySet="Articles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMMENT_EVENT" Association="Self.FK_COMMENT_EVENT">
+      <End Role="Articles" EntitySet="Articles" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMMENT_USER" Association="Self.FK_COMMENT_USER">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EVENT_LASTUPDATEUSER" Association="Self.FK_EVENT_LASTUPDATEUSER">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Events" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EVENT_USER" Association="Self.FK_EVENT_USER">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Events" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PLACE_LASTUPDATEUSER" Association="Self.FK_PLACE_LASTUPDATEUSER">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Places" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PLACE_USER" Association="Self.FK_PLACE_USER">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Places" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRIPBOOK_USER" Association="Self.FK_TRIPBOOK_USER">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="TripBooks" EntitySet="TripBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMMENT_ARTICLE" Association="Self.FK_COMMENT_ARTICLE">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_COMMENT_PLACE" Association="Self.FK_COMMENT_PLACE">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EVENT_EVENTKIND" Association="Self.FK_EVENT_EVENTKIND">
+      <End Role="EventKinds" EntitySet="EventKinds" />
+      <End Role="Events" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EVENT_PLACE" Association="Self.FK_EVENT_PLACE">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="Events" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EVENT_SCOPE" Association="Self.FK_EVENT_SCOPE">
+      <End Role="Scopes" EntitySet="Scopes" />
+      <End Role="Events" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRIPBOOKHD_EVENT" Association="Self.FK_TRIPBOOKHD_EVENT">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="TripBookHasDestinations" EntitySet="TripBookHasDestinations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IMAGE_IMAGEKIND" Association="Self.FK_IMAGE_IMAGEKIND">
+      <End Role="ImageKinds" EntitySet="ImageKinds" />
+      <End Role="Images" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PLACE_PLACEKIND" Association="Self.FK_PLACE_PLACEKIND">
+      <End Role="PlaceKinds" EntitySet="PlaceKinds" />
+      <End Role="Places" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PLACE_NEXTPLACE" Association="Self.FK_PLACE_NEXTPLACE">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="Places1" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PLACE_PREVPLACE" Association="Self.FK_PLACE_PREVPLACE">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="Places1" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PLACE_SCOPE" Association="Self.FK_PLACE_SCOPE">
+      <End Role="Scopes" EntitySet="Scopes" />
+      <End Role="Places" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRIPBOOKHD_PLACE" Association="Self.FK_TRIPBOOKHD_PLACE">
+      <End Role="Places" EntitySet="Places" />
+      <End Role="TripBookHasDestinations" EntitySet="TripBookHasDestinations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRIPBOOKHD_TRIPBOOK" Association="Self.FK_TRIPBOOKHD_TRIPBOOK">
+      <End Role="TripBooks" EntitySet="TripBooks" />
+      <End Role="TripBookHasDestinations" EntitySet="TripBookHasDestinations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRIPBOOK_TBORIGIN" Association="Self.FK_TRIPBOOK_TBORIGIN">
+      <End Role="TripBooks" EntitySet="TripBooks" />
+      <End Role="TripBooks1" EntitySet="TripBooks" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLLIA | MAP</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/mainstyle.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/uicontrol.js"></script>
+    <script src="~/Scripts/ajaxcontrol.js"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <div class="searchTotalContainer">
+        <div class="searchContainer clearfloat">
+            <input type="text" placeholder="Ex: Pollia, Ho Chi Minh City, Vietnam" id="searchValue">
+            <div class="typeList" id="typeList">
+                <ul>
+                    <li onclick="closeTypeList();changeSearchType(this);"><i class="fa fa-map-marker"></i> Place</li>
+                    <li onclick="closeTypeList();changeSearchType(this);"><i class="fa fa-bolt"></i> Event</li>
+                </ul>
+            </div>
+            <button style="float: left" id="searchTypeButton" onclick="toggleTypeList()">
+                <span id="searchType"><i class="fa fa-map-marker"></i> Place</span>
+                <i class="fa fa-sort-down sort-down"></i>
+            </button>
+            <button style="float: right" onclick="searchByName()"><i class="fa fa-search"></i></button>
+            <button style="float: right" onclick="closeResult()"><i class="fa fa-times"></i></button>
+        </div>
+        <!--<div class="searchContainer clearfloat">-->
+        <!--<input type="text" placeholder="Ex: Pollia, Ho Chi Minh City, Vietnam">-->
+        <!--<button style="float: left"><i class="fa fa-bars"></i></button>-->
+        <!--<button style="float: right"><i class="fa fa-search" onclick="showResult()"></i></button>-->
+        <!--<button style="float: right"><i class="fa fa-times" onclick="closeResult()"></i></button>-->
+        <!--</div>-->
+    </div>
+    <div class="resultContainer" id="searchResult">
+        <div class="resultHeader"></div>
+        <div class="resultContain">
+            <div id="resultElements">
+            </div>
+            <div id="showMore"><a onclick="showMorePlace()">Xem thêm ...</a></div>
+        </div>
+    </div>
+    <div class="resultContainer" id="searchResultDetail">
+        <div class="resultCover">
+            <div style="background-image: url('~/Content/img/default_cover.JPG')"></div>
+        </div>
+        <div class="resultHeader">
+            <div class="info">
+                <p class="header">Rock Candy</p>
+                <p class="star">
+                    <span>4</span>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star starblue"></i>
+                </p>
+                <p>Shop</p>
+            </div>
+            <div class="addToTripbookContain">
+                <div class="buttonCircle buttonPrimary">
+                    <i class="fa fa-plus"></i>
+                </div>
+            </div>
+        </div>
+        <div class="resultDetail">
+            <p><i>This is a fast food restaurant</i></p>
+            <p><span class="fa fa-location-arrow"></span> 139-, 147 Nguyễn Văn Lượng, Phường 10, Gò Vấp, Hồ Chí Minh</p>
+            <p><span class="fa fa-phone"></span> 0915467895</p>
+            <p><span class="fa fa-facebook"></span> <a href="https://www.facebook.com/">https://www.facebook.com/</a></p>
+            <p><span class="fa fa-clock-o"></span> Open until 10:00pm</p>
+        </div>
+        <div class="commentContain" id="commentContain">
+        </div>
+    </div>
+    <div class="resultContainer" id="searchDual">
+        <div class="resultHeader">
+            <div class="searchDualContainerControl">
+                <div class="clearfloat">
+                    <button style="float: right" onclick="closeSearchDual()"><i class="fa fa-times"></i></button>
+                    <button style="float: left" onclick="backSearchDual()"><i class="fa fa-arrow-left"></i></button>
+                </div>
+            </div>
+            <div class="searchDualContainer" id="tripbook">
+                <div class="searchContainer clearfloat">
+                    <input type="text" placeholder="Ex: Pollia, Ho Chi Minh City, Vietnam" value="">
+                    <button style="float: right" onclick=""><i class="fa fa-times"></i></button>
+                    <button style="float: right" onclick=""><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+            <div class="searchDualContainerControl">
+                <div class="clearfloat">
+                    <button style="float: left" onclick=""><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div></div>
+        </div>
+    </div>
+    <div class="showTripBook">
+        <div class="buttonCircle buttonWarning" onclick="showSearchDual()">
+            <i class="fa fa-list-ul" style="font-size: 2em"></i>
+        </div>
+    </div>
+    <script src="~/Scripts/mapcontrol.js"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXohi1grY59Bk8tEo0Mra9VA4CbMGIGWQ&callback=initMap">
+    </script>
+</body>
+</html>
+
