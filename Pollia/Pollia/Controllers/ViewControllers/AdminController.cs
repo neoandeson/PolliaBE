@@ -45,6 +45,11 @@ namespace Pollia.Controllers.ViewControllers
                 totalEvents, totalSupplierEvent);
             return View(anvm);
         }
+
+        public ActionResult Place()
+        {
+            return View();
+        }
     }
 
     public class AdminNumberViewModel

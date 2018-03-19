@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Place";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<link href="~/Content/adminAsset/plugins/data-table/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<link href="~/Content/adminAsset/plugins/data-table/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/adminAsset/plugins/data-table/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+<!-- Container-fluid starts -->
+<div class="container-fluid">
+    <!-- Row Starts -->
+    <div class="row">
+        <div class="col-sm-12 p-0">
+            <div class="main-header" style="margin-top: 0px;">
+                <h4>Data Table</h4>
+                <ol class="breadcrumb breadcrumb-title breadcrumb-arrow">
+                    <li class="breadcrumb-item">
+                        <a href="#">
+                            <i class="icofont icofont-home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                    <li class="breadcrumb-item"><a href="data-table.html">Data Table</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- Row end -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <table id="placeTable">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Longitude</td>
+                            <td>Latitude</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<!-- Container-fluid ends -->
+
+@section scripts {
+
+    <script>
+        $(document).ready(function () {
+            $('#placeTable').DataTable({
+                "ajax": "/api/place/Get10Places",
+                "columns": [
+                    { "data": "Name" },
+                    { "data": "Longitude" },
+                    { "data": "Latitude" }
+                ]
+            });
+        });
+    </script>
+
+}

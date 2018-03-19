@@ -72,6 +72,56 @@ namespace Pollia.Controllers.FunctionControllers
             }
         }
 
+        public IHttpActionResult Get10Places()
+        {
+            try
+            {
+                IEnumerable<Place> places = _placeService.GetNPlaces(10);
+                List<PlaceViewModel> placeVMs = new List<PlaceViewModel>();
+                PlaceViewModel placeVM = null;
+                PlaceKind placeKind;
+                foreach (var place in places)
+                {
+                    placeKind = _placeKindService.GetPlaceKind(place.PlaceKindId);
+                    placeVM = new PlaceViewModel(
+                    place.Id,
+                    place.Name,
+                    place.Description,
+                    place.Longitude,
+                    place.Latitude,
+                    place.ZoomSize,
+                    place.ScopeId,
+                    place.Address,
+                    place.ServeStatus,
+                    placeKind != null ? placeKind.Description : place.PlaceKindId + "",
+                    place.TimeOpen,
+                    place.TimeClose,
+                    place.RatingStar,
+                    place.NofSearch,
+                    place.Popular,
+                    place.PLike,
+                    place.Facebook,
+                    place.Instagram,
+                    place.PageUrl,
+                    place.ImgUrl,
+                    place.UserId,
+                    place.PhoneNumber,
+                    place.DateCreate,
+                    place.LastConfirm,
+                    place.LastUpdateUserId,
+                    place.PrevPlaceId,
+                    place.NextPlaceId
+                    );
+                    placeVMs.Add(placeVM);
+                }
+                return Ok(placeVMs);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         public IHttpActionResult GetPlaceByName(string name)
         {
             if (!String.IsNullOrEmpty(name.Trim()))

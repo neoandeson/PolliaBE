@@ -58,9 +58,9 @@ namespace Pollia
                       "~/Content/adminAsset/plugins/data-table/js/dataTables.responsive.min.js",
                       "~/Content/adminAsset/plugins/data-table/js/responsive.bootstrap4.min.js",
                       "~/Content/adminAsset/js/main.js",
-                      "~/Content/adminAsset/pages/dashboard.js",
                       "~/Content/adminAsset/pages/elements.js",
                       "~/Content/adminAsset/js/menu.js"
+                      //"~/Content/adminAsset/pages/dashboard.js",
                       ));
         }
     }

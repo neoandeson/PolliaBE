@@ -12,6 +12,7 @@ namespace ServiceLayer.Services
     public interface IPlaceService
     {
         IEnumerable<Place> GetPlaces(string name = null);
+        IEnumerable<Place> GetNPlaces(int quantity);
         Place GetPlace(int id);
         Place GetPlace(string name);
         Place GetPlaceByAddress(string address);
@@ -48,6 +49,11 @@ namespace ServiceLayer.Services
         {
             PlaceRepository.Update(Place);
             SavePlace();
+        }
+
+        public IEnumerable<Place> GetNPlaces(int quantity)
+        {
+            return PlaceRepository.GetAll().Skip(0).Take(quantity);
         }
 
         public Place GetPlace(int id)
