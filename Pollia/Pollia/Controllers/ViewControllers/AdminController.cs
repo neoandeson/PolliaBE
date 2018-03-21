@@ -1,4 +1,5 @@
-﻿using ServiceLayer.Services;
+﻿using Pollia.Utils;
+using ServiceLayer.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace Pollia.Controllers.ViewControllers
         }
 
         // GET: Admin
+        [CustomAuthorize(Roles = "Admin")]
         public ActionResult Index()
         {
             int totalUsers = _userService.GetTotalUsers();

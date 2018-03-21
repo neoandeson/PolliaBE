@@ -1,19 +1,16 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Place";
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
 
-<link href="~/Content/adminAsset/plugins/data-table/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-<link href="~/Content/adminAsset/plugins/data-table/css/buttons.dataTables.min.css" rel="stylesheet" />
-<link href="~/Content/adminAsset/plugins/data-table/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+<link href="~/Scripts/datatable/datatables.min.css" rel="stylesheet" />
 <!-- Container-fluid starts -->
 <div class="container-fluid">
     <!-- Row Starts -->
     <div class="row">
         <div class="col-sm-12 p-0">
             <div class="main-header" style="margin-top: 0px;">
-                <h4>Data Table</h4>
+                <h4>Place Table</h4>
                 <ol class="breadcrumb breadcrumb-title breadcrumb-arrow">
                     <li class="breadcrumb-item">
                         <a href="#">
@@ -21,7 +18,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                    <li class="breadcrumb-item"><a href="data-table.html">Data Table</a></li>
+                    <li class="breadcrumb-item"><a href="data-table.html">Place Table</a></li>
                 </ol>
             </div>
         </div>
@@ -30,38 +27,71 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <table id="placeTable">
-                    <thead>
-                        <tr>
-                            <td>Name</td>
-                            <td>Longitude</td>
-                            <td>Latitude</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
+                <div class="card-block">
+                    <table id="placeTable" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Longitude</th>
+                                <th>Latitude</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Longitude</th>
+                                <th>Latitude</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-    
+
 </div>
 <!-- Container-fluid ends -->
 
 @section scripts {
-
+    <script src="~/Scripts/datatable/datatables.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#placeTable').DataTable({
-                "ajax": "/api/place/Get10Places",
-                "columns": [
-                    { "data": "Name" },
-                    { "data": "Longitude" },
-                    { "data": "Latitude" }
-                ]
+            $.ajax({
+                dataType: "json",
+                url: "@Url.Action("Get10Places", "api/Place")",
+                success: function (data) {
+                    var datatableVariable = $('#placeTable').DataTable({
+                        data: data,
+                        columns: [
+                            { data: 'Name' },
+                            { data: 'Description' },
+                            { data: 'Longitude' },
+                            { data: 'Latitude' }
+                        ]
+                    });
+                    //$('#studentTable tfoot th').each(function () {
+                    //    var placeHolderTitle = $('#studentTable thead th').eq($(this).index()).text();
+                    //    $(this).html('<input type="text" class="form-control input input-sm" placeholder = "Search ' + placeHolderTitle + '" />');
+                    //});
+                    //datatableVariable.columns().every(function () {
+                    //    var column = this;
+                    //    $(this.footer()).find('input').on('keyup change', function () {
+                    //        column.search(this.value).draw();
+                    //    });
+                    //});
+                    //$('.showHide').on('click', function () {
+                    //    var tableColumn = datatableVariable.column($(this).attr('data-columnindex'));
+                    //    tableColumn.visible(!tableColumn.visible());
+                    //});
+                }
             });
+
         });
+
     </script>
 
 }
+
+

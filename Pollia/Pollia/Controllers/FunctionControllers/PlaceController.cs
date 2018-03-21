@@ -77,44 +77,25 @@ namespace Pollia.Controllers.FunctionControllers
             try
             {
                 IEnumerable<Place> places = _placeService.GetNPlaces(10);
-                List<PlaceViewModel> placeVMs = new List<PlaceViewModel>();
-                PlaceViewModel placeVM = null;
+                List<PlaceViewModelDT> placeVMs = new List<PlaceViewModelDT>();
+                PlaceViewModelDT placeVM = null;
                 PlaceKind placeKind;
                 foreach (var place in places)
                 {
                     placeKind = _placeKindService.GetPlaceKind(place.PlaceKindId);
-                    placeVM = new PlaceViewModel(
-                    place.Id,
+                    placeVM = new PlaceViewModelDT(
                     place.Name,
                     place.Description,
-                    place.Longitude,
-                    place.Latitude,
-                    place.ZoomSize,
-                    place.ScopeId,
-                    place.Address,
-                    place.ServeStatus,
-                    placeKind != null ? placeKind.Description : place.PlaceKindId + "",
-                    place.TimeOpen,
-                    place.TimeClose,
-                    place.RatingStar,
-                    place.NofSearch,
-                    place.Popular,
-                    place.PLike,
-                    place.Facebook,
-                    place.Instagram,
-                    place.PageUrl,
-                    place.ImgUrl,
-                    place.UserId,
-                    place.PhoneNumber,
-                    place.DateCreate,
-                    place.LastConfirm,
-                    place.LastUpdateUserId,
-                    place.PrevPlaceId,
-                    place.NextPlaceId
+                    place.Longitude.ToString(),
+                    place.Latitude.ToString()
                     );
                     placeVMs.Add(placeVM);
                 }
-                return Ok(placeVMs);
+                //return Ok(placeVMs);
+                return Json(new
+                {
+                    data = placeVMs
+                });
             }
             catch (Exception e)
             {
@@ -275,8 +256,27 @@ namespace Pollia.Controllers.FunctionControllers
             {
                 return InternalServerError();
             }
-            
+
         }
 
+
+
+        public class PlaceViewModelDT
+        {
+            public PlaceViewModelDT() { }
+
+            public PlaceViewModelDT(string name, string description, string longitude, string latitude)
+            {
+                Name = name;
+                Description = description;
+                Longitude = longitude;
+                Latitude = latitude;
+            }
+
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public string Longitude { get; set; }
+            public string Latitude { get; set; }
+        }
     }
 }

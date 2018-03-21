@@ -1151,6 +1151,12 @@
     <Content Include="Content\img\PolliaLogo.png" />
     <Content Include="Content\img\PolliaLogo.svg" />
     <Content Include="Content\mainstyle.css" />
+    <Content Include="Content\map\leaflet-hash.js" />
+    <Content Include="Content\map\mapbox-gl-rtl-text.js" />
+    <Content Include="Content\map\mapbox-gl.css" />
+    <Content Include="Content\map\mapbox-gl.js" />
+    <Content Include="Content\map\mapbox.css" />
+    <Content Include="Content\map\mapbox.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1224,6 +1230,8 @@
     <Content Include="Content\adminAsset\icon\weather-icons\fonts\weathericons-regular-webfontd41d.eot" />
     <Content Include="Scripts\datatable\Buttons-1.5.1\css\common.scss" />
     <Content Include="Scripts\datatable\Buttons-1.5.1\css\mixins.scss" />
+    <Content Include="Content\map\osm-liberty.json" />
+    <Content Include="Content\map\style.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\datatable\AutoFill-2.2.2\css\autoFill.bootstrap.css" />
     <Content Include="Scripts\datatable\AutoFill-2.2.2\css\autoFill.bootstrap.min.css" />
@@ -1514,6 +1522,7 @@
     <Content Include="Views\Main\Main.cshtml" />
     <Content Include="Views\Shared\_Admin.cshtml" />
     <Content Include="Views\Admin\Place.cshtml" />
+    <Content Include="Views\Main\Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

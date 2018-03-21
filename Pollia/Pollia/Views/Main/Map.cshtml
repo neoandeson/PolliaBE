@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewBag.Title = "Map";
+    Layout = null;
+}
+
+ <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pollia</title>
+  <link rel="stylesheet" type="text/css" href="http://localhost:32768/mapbox-gl.css" />
+  <script src="http://localhost:32768/mapbox-gl.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://localhost:32768/mapbox.css" />
+  <script src="http://localhost:32768/mapbox.js"></script>
+  <script src="http://localhost:32768/leaflet-hash.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+  </style>
+</head>
+<body>
+  <h1 style="display:none;">OSM Liberty</h1>
+  <div id='map'></div>
+  <script>
+    var q = (location.search || '').substr(1).split('&');
+    var preference =
+      q.indexOf('vector') >= 0 ? 'vector' :
+        (q.indexOf('raster') >= 0 ? 'raster' :
+                  (mapboxgl.supported() ? 'vector' : 'raster'));
+      $('.mapboxgl-ctrl.mapboxgl-ctrl-attrib').hide();
+    if (preference == 'vector') {
+      mapboxgl.setRTLTextPlugin('http://localhost:32768/mapbox-gl-rtl-text.js');
+      var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'http://localhost:32768/styles/osm-liberty/style.json',
+        center: [6.1, 90],
+        hash: true
+      });
+      map.addControl(new mapboxgl.NavigationControl());
+    } else {
+      var map = L.mapbox.map('map', 'http://localhost:32768/styles/osm-liberty.json', { zoomControl: false });
+      new L.Control.Zoom({ position: 'topright' }).addTo(map);
+      setTimeout(function() {
+        new L.Hash(map);
+      }, 0);
+    }
+
+      var myDataPoint = L.marker([12.24762, 109.197]).addTo(map);
+      // Bind popup to Data Point object
+      myDataPoint.bindPopup("This is Nha Trang Square.");
+      // Bind popup to data point object
+      myDataPoint.bindPopup("<h3>NT Square</h3><p>Nha Trang, VN<br>Information about NT Square.</p>");
+
+      // Create an Empty Popup
+      var popup = L.popup();
+
+      var placeData = {
+          "type": "FeatureCollection",
+          "features": [
+              {
+                  "type": "Feature",
+                  "properties": {
+                      "lat": 12.24762,
+                      "lon": 109.197,
+                      "code": "null",
+                      "name": "Cafe, giải khát Ngọc Như",
+                      "pLike": 0,
+                      "imgUrl": "//poipic.coccoc.com/1000x750/poi/previews/20141022/3833-1294245a55b99034358e293d02d5fe4e.jpg",
+                      "rating": 0,
+                      "address": "Bình Trị Đông B, Q. Bình Tân, Tp. Hồ Chí Minh",
+                      "creator": "quản lý",
+                      "pageUrl": "",
+                      "popular": 0,
+                      "facebook": "",
+                      "priority": 0,
+                      "timeOpen": 0,
+                      "instagram": "null",
+                      "placeKind": "Café",
+                      "timeClose": 0,
+                      "noOfSearch": 0,
+                      "description": "null",
+                      "lastConfirm": "2018-02-17T19:29:13",
+                      "serveStatus": 1
+                  },
+                  "geometry": {
+                      "type": "Point",
+                      "coordinates": [
+                          106.60498047,
+                          10.74094486
+                      ]
+                  }
+              }
+          ]
+      };
+  </script>
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Map</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <style>
+        body {
+            margin: 0px;
+        }
+
+        img {
+            float: left;
+            padding-right: 10px;
+        }
+
+        p {
+            font-size: 15px;
+            line-height: 25px;
+        }
+
+        #wrapper {
+            width: 715px;
+        }
+
+        #map {
+            width: 100vw;
+            margin: 0 auto;
+            height: 100vh;
+        }
+
+        #controls {
+            width: 100%;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        #header {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="wrapper">
+        <div id="map"></div>
+    </div>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+        // Create Map Object
+        var map = L.map('map', { center: [10.762622, 106.660172], zoom: 13 });
+
+        // Add Tile Layer from MAPC and MassGIS
+        L.tileLayer('http://localhost:32768/styles/osm-liberty/{z}/{x}/{y}.png', {
+            attribution: 'Tiles by <a href="http://mapc.org">MAPC</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
+            maxZoom: 17,
+            minZoom: 9
+        }).addTo(map);
+
+		// Add Rodent Violation GeoJSON Data
+    </script>
+</body>
+</html>-->

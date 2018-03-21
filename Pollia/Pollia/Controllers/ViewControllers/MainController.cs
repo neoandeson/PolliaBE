@@ -17,5 +17,10 @@ namespace Pollia.Controllers.ViewControllers
         {
             return View();
         }
+
+        public ActionResult Map()
+        {
+            return View();
+        }
     }
 }
