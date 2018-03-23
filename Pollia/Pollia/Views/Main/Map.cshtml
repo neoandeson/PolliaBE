@@ -4,7 +4,7 @@
     Layout = null;
 }
 
- <!DOCTYPE html>
+ @*<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -26,11 +26,11 @@
   <div id='map'></div>
   <script>
     var q = (location.search || '').substr(1).split('&');
-    var preference =
+      var preference = //'raster';
       q.indexOf('vector') >= 0 ? 'vector' :
         (q.indexOf('raster') >= 0 ? 'raster' :
                   (mapboxgl.supported() ? 'vector' : 'raster'));
-      $('.mapboxgl-ctrl.mapboxgl-ctrl-attrib').hide();
+      
     if (preference == 'vector') {
       mapboxgl.setRTLTextPlugin('http://localhost:32768/mapbox-gl-rtl-text.js');
       var map = new mapboxgl.Map({
@@ -41,21 +41,16 @@
       });
       map.addControl(new mapboxgl.NavigationControl());
     } else {
-      var map = L.mapbox.map('map', 'http://localhost:32768/styles/osm-liberty.json', { zoomControl: false });
+        var map = L.mapbox.map('map', 'http://localhost:32768/styles/dark-matter.json', { zoomControl: false });
       new L.Control.Zoom({ position: 'topright' }).addTo(map);
       setTimeout(function() {
         new L.Hash(map);
       }, 0);
+      $('.mapboxgl-ctrl.mapboxgl-ctrl-attrib').hide();
+      $('.leaflet-control-attribution.leaflet-control').hide();
     }
 
-      var myDataPoint = L.marker([12.24762, 109.197]).addTo(map);
-      // Bind popup to Data Point object
-      myDataPoint.bindPopup("This is Nha Trang Square.");
-      // Bind popup to data point object
-      myDataPoint.bindPopup("<h3>NT Square</h3><p>Nha Trang, VN<br>Information about NT Square.</p>");
-
-      // Create an Empty Popup
-      var popup = L.popup();
+      
 
       var placeData = {
           "type": "FeatureCollection",
@@ -97,13 +92,13 @@
       };
   </script>
 </body>
-</html>
+</html>*@
 
 
-<!--<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Leaflet Map</title>
+    <title>Pollia Map</title>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <style>
         body {
@@ -111,8 +106,8 @@
         }
 
         img {
-            float: left;
-            padding-right: 10px;
+            /*float: left;
+            padding-right: 10px;*/
         }
 
         p {
@@ -140,12 +135,43 @@
             margin-top: 0px;
             margin-bottom: 0px;
         }
+
+        .custom .leaflet-popup-tip,
+        .custom .leaflet-popup-content-wrapper {
+            background: #e93434;
+            color: #ffffff;
+        }
+
+        .leaflet-popup-content {
+            width: auto !important;
+        }
+
+        .custom-icon {
+            border-radius: 50%;
+            border: solid 4px dodgerblue;
+        }
+
+        .div-video {
+            width: 20em;
+            height: 31em;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
     </style>
 </head>
 <body>
     
     <div id="wrapper">
         <div id="map"></div>
+    </div>
+
+    <div id="video" class="div-video">
+        <label style="color: white; font-weight:700" onclick="closeVideo(); $('#myVideo').trigger('click')">X</label>
+        <video id="myVideo" width="320" height="450">
+            <source src="~/Content/Video/la.mp4" type="video/mp4" />
+            Your browser does not support HTML5 video.
+        </video>
     </div>
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -154,13 +180,54 @@
         var map = L.map('map', { center: [10.762622, 106.660172], zoom: 13 });
 
         // Add Tile Layer from MAPC and MassGIS
-        L.tileLayer('http://localhost:32768/styles/osm-liberty/{z}/{x}/{y}.png', {
-            attribution: 'Tiles by <a href="http://mapc.org">MAPC</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
+        L.tileLayer('http://localhost:32768/styles/dark-matter/{z}/{x}/{y}.png', {
+            attribution: 'Tiles by <a href="http://mapc.org">Pollia</a>, New approach of Tourism Service',
             maxZoom: 17,
             minZoom: 9
         }).addTo(map);
 
-		// Add Rodent Violation GeoJSON Data
+        //$('.leaflet-control-attribution.leaflet-control').hide();
+        var customIcon = L.icon({
+            iconUrl: '//poipic5.coccoc.com/1000x750/poi/previews/20180202/21545-a9f59b1db4052a60442774025e4f9982.jpg',
+            iconSize: [50, 50],
+            popupAnchor: [0, -20],
+            className: 'custom-icon'
+        });
+
+        var customIconStt = L.icon({
+            iconUrl: 'https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/29216348_1525963937525530_8876284000183088267_n.jpg?oh=4fd793fe306e3caac14449aea331056a&oe=5B47F839',
+            iconSize: [50, 50],
+            popupAnchor: [0, -15],
+            className: 'custom-icon'
+        });
+
+        var customPopup = "Sunshine <b onclick='showVideo()'>Nha Trang</b> ^^!<img src='http://joshuafrazier.info/images/maptime.gif' alt='maptime logo gif' width='250px'/>";
+
+        // specify popup options 
+        var customOptions =
+            {
+                'maxWidth': '500',
+                'className': 'custom'
+            }
+        
+        L.marker([10.75971127, 106.68814087], { icon: customIcon }).addTo(map).bindPopup("Toyota Bến Thành");
+        L.marker([12.24718062, 109.19438660], { icon: customIconStt }).addTo(map).bindPopup(customPopup, customOptions);
+
+        function showVideo() {
+            $('#video').show();
+        }
+
+        function closeVideo() {
+            $('#video').hide();
+        }
+
+        $('#myVideo').click(function () {
+            if ($("#myVideo").get(0).paused) {
+                $("#myVideo").get(0).play();
+            } else {
+                $("#myVideo").get(0).pause();
+            }
+        });
     </script>
 </body>
-</html>-->
+</html>

@@ -1157,6 +1157,7 @@
     <Content Include="Content\map\mapbox-gl.js" />
     <Content Include="Content\map\mapbox.css" />
     <Content Include="Content\map\mapbox.js" />
+    <Content Include="Content\Video\la.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
