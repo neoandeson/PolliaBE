@@ -34,7 +34,6 @@ namespace Pollia.Controllers.FunctionControllers
                 {
                     placeKind = _placeKindService.GetPlaceKind(place.PlaceKindId);
                     placeVM = new PlaceViewModel(
-                    place.Id,
                     place.Name,
                     place.Description,
                     place.Longitude,
@@ -115,7 +114,6 @@ namespace Pollia.Controllers.FunctionControllers
                     {
                         placeKind = _placeKindService.GetPlaceKind(place.PlaceKindId);
                         PlaceViewModel placeVM = new PlaceViewModel(
-                            place.Id,
                             place.Name,
                             place.Description,
                             place.Longitude,
@@ -172,7 +170,6 @@ namespace Pollia.Controllers.FunctionControllers
                     {
                         placeKind = _placeKindService.GetPlaceKind(place.PlaceKindId);
                         placeVM = new PlaceViewModel(
-                            place.Id,
                             place.Name,
                             place.Description,
                             place.Longitude,
@@ -220,7 +217,6 @@ namespace Pollia.Controllers.FunctionControllers
                     var user = System.Web.HttpContext.Current.User.Identity.Name;
                     var placeKind = _placeKindService.GetPlaceKind(place.PlaceKindId);
                     PlaceViewModel placeVM = new PlaceViewModel(
-                                place.Id,
                                 place.Name,
                                 place.Description,
                                 place.Longitude,

@@ -28,39 +28,32 @@ namespace Pollia
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Admin/css").Include(
-                      "~/Content/adminAsset/css/google-font.css",
-                      "~/Content/adminAsset/icon/icofont/css/icofont.css",
-                      "~/Content/adminAsset/icon/simple-line-icons/css/simple-line-icons.css",
-                      "~/Content/adminAsset/css/bootstrap.min.css",
-                      "~/Content/adminAsset/plugins/charts/chartlist/css/chartlist.css",
-                      "~/Content/adminAsset/css/svg-weather.css",
-                      "~/Content/adminAsset/css/main.css",
-                      "~/Content/adminAsset/css/responsive.css",
-                      "~/Content/adminAsset/css/color/inverse.css"
+                      "~/Content/assets/plugins/jquery-ui/jquery-ui.min.css",
+                      "~/Content/assets/plugins/bootstrap/4.0.0/css/bootstrap.min.css",
+                      "~/Content/assets/plugins/font-awesome/5.0/css/fontawesome-all.min.css",
+                      "~/Content/assets/plugins/animate/animate.min.css",
+                      "~/Content/assets/css/default/style.min.css",
+                      "~/Content/assets/css/default/style-responsive.min.css",
+                      "~/Content/assets/css/font/google-font.css"
                       ));
             bundles.Add(new ScriptBundle("~/Admin/js").Include(
-                      "~/Content/adminAsset/js/jquery-3.1.1.min.js",
-                      "~/Content/adminAsset/js/jquery-ui.min.js",
-                      "~/Content/adminAsset/js/tether.min.js",
-                      "~/Content/adminAsset/js/bootstrap.min.js",
-                      "~/Content/adminAsset/plugins/waves/js/waves.min.js",
-                      "~/Content/adminAsset/plugins/slimscroll/js/jquery.slimscroll.js",
-                      "~/Content/adminAsset/plugins/slimscroll/js/jquery.nicescroll.min.js",
-                      "~/Content/adminAsset/plugins/search/js/classie.js",
-                      "~/Content/adminAsset/plugins/notification/js/bootstrap-growl.min.js",
-                      "~/Content/adminAsset/plugins/charts/sparkline/js/jquery.sparkline.js",
-                      "~/Content/adminAsset/plugins/countdown/js/jquery.countdown.js",
-                      "~/Content/adminAsset/plugins/countdown/js/jquery.counterup.js",
-                      "~/Content/adminAsset/plugins/countdown/js/waypoints.min.js",
-                      "~/Content/adminAsset/plugins/charts/echarts/js/echarts-all.js",
-                      "~/Content/adminAsset/plugins/data-table/js/jquery.dataTables.min.js",
-                      "~/Content/adminAsset/plugins/data-table/js/dataTables.bootstrap4.min.js",
-                      "~/Content/adminAsset/plugins/data-table/js/dataTables.responsive.min.js",
-                      "~/Content/adminAsset/plugins/data-table/js/responsive.bootstrap4.min.js",
-                      "~/Content/adminAsset/js/main.js",
-                      "~/Content/adminAsset/pages/elements.js",
-                      "~/Content/adminAsset/js/menu.js"
-                      //"~/Content/adminAsset/pages/dashboard.js",
+                      "~/Content/assets/plugins/jquery/jquery-3.2.1.min.js",
+                      "~/Content/assets/plugins/jquery-ui/jquery-ui.min.js",
+                      "~/Content/assets/plugins/bootstrap/4.0.0/js/bootstrap.bundle.min.js",
+                      "~/Content/assets/plugins/slimscroll/jquery.slimscroll.min.js",
+                      "~/Content/assets/plugins/js-cookie/js.cookie.js",
+                      "~/Content/assets/js/theme/default.min.js",
+                      "~/Content/assets/js/apps.min.js",
+                      "~/Content/assets/plugins/gritter/js/jquery.gritter.js",
+                      "~/Content/assets/plugins/flot/jquery.flot.min.js",
+                      "~/Content/assets/plugins/flot/jquery.flot.time.min.js",
+                      "~/Content/assets/plugins/flot/jquery.flot.resize.min.js",
+                      "~/Content/assets/plugins/flot/jquery.flot.pie.min.js",
+                      "~/Content/assets/plugins/sparkline/jquery.sparkline.js",
+                      "~/Content/assets/plugins/jquery-jvectormap/jquery-jvectormap.min.js",
+                      "~/Content/assets/plugins/jquery-jvectormap/jquery-jvectormap-world-mill-en.js",
+                      "~/Content/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js",
+                      "~/Content/assets/js/demo/dashboard.min.js"
                       ));
         }
     }

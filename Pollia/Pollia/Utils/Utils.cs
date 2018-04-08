@@ -40,5 +40,15 @@ namespace Pollia.Utils
 
             return "";
         }
+
+        //Get User's Role
+        public static string GetRole(this System.Security.Principal.IPrincipal usr)
+        {
+            var roleClaim = ((ClaimsIdentity)usr.Identity).Claims.ToArray()[1];
+            if (roleClaim != null)
+                return roleClaim.Value.ToString();
+
+            return "";
+        }
     }
 }

@@ -5,6 +5,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pollia.Models
 {

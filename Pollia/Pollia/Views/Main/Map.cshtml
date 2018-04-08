@@ -166,7 +166,7 @@
         <div id="map"></div>
     </div>
 
-    <div id="video" class="div-video">
+    <div id="video" class="div-video" style="display: none;">
         <label style="color: white; font-weight:700" onclick="closeVideo(); $('#myVideo').trigger('click')">X</label>
         <video id="myVideo" width="320" height="450">
             <source src="~/Content/Video/la.mp4" type="video/mp4" />
@@ -181,18 +181,20 @@
 
         // Add Tile Layer from MAPC and MassGIS
         L.tileLayer('http://localhost:32768/styles/dark-matter/{z}/{x}/{y}.png', {
-            attribution: 'Tiles by <a href="http://mapc.org">Pollia</a>, New approach of Tourism Service',
+            attribution: '<a href="http://mapc.org">Pollia</a>, New approach of Tourism Service',
             maxZoom: 17,
             minZoom: 9
         }).addTo(map);
 
         //$('.leaflet-control-attribution.leaflet-control').hide();
         var customIcon = L.icon({
-            iconUrl: '//poipic5.coccoc.com/1000x750/poi/previews/20180202/21545-a9f59b1db4052a60442774025e4f9982.jpg',
+            iconUrl: 'http://toyota.bacninh.vn/wp-content/uploads/2017/08/toyota.jpg',
             iconSize: [50, 50],
             popupAnchor: [0, -20],
             className: 'custom-icon'
         });
+
+        // //poipic5.coccoc.com/1000x750/poi/previews/20180202/21545-a9f59b1db4052a60442774025e4f9982.jpg
 
         var customIconStt = L.icon({
             iconUrl: 'https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/29216348_1525963937525530_8876284000183088267_n.jpg?oh=4fd793fe306e3caac14449aea331056a&oe=5B47F839',
@@ -210,7 +212,7 @@
                 'className': 'custom'
             }
         
-        L.marker([10.75971127, 106.68814087], { icon: customIcon }).addTo(map).bindPopup("Toyota Bến Thành");
+        L.marker([10.75971127, 106.68814087], { icon: customIcon }).addTo(map).bindPopup("<p>Toyota Bến Thành</p>");
         L.marker([12.24718062, 109.19438660], { icon: customIconStt }).addTo(map).bindPopup(customPopup, customOptions);
 
         function showVideo() {

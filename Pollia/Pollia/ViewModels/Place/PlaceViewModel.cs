@@ -9,9 +9,8 @@ namespace Pollia.ViewModels
     {
         public PlaceViewModel() { }
 
-        public PlaceViewModel(int id, string name, string description, double longitude, double latitude, double? zoomSize, int? scopeId, string address, int serveStatus, string placeKind, int? timeOpen, int? timeClose, int ratingStar, int nofSearch, int popular, int pLike, string facebook, string instagram, string pageUrl, string imgUrl, string userId, string phoneNumber, DateTime? dateCreate, DateTime? lastConfirm, string lastUpdateUserId, int? prevPlaceId, int? nextPlaceId)
+        public PlaceViewModel(string name, string description, double longitude, double latitude, double? zoomSize, int? scopeId, string address, int serveStatus, string placeKind, int? timeOpen, int? timeClose, int ratingStar, int nofSearch, int popular, int pLike, string facebook, string instagram, string pageUrl, string imgUrl, string userId, string phoneNumber, DateTime? dateCreate, DateTime? lastConfirm, string lastUpdateUserId, int? prevPlaceId, int? nextPlaceId)
         {
-            Id = id;
             Name = name;
             Description = description;
             Longitude = longitude;
@@ -40,7 +39,6 @@ namespace Pollia.ViewModels
             NextPlaceId = nextPlaceId;
         }
 
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public double Longitude { get; set; }
